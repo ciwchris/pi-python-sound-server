@@ -1,0 +1,15 @@
+<html>
+    <body>
+        <button onclick="play('a')">a</button>
+        <button onclick="play('b')">b</button>
+        <button onclick="play('c')">c</button>
+        <button onclick="play('d')">d</button>
+        <button onclick="play('e')">e</button>
+        <button onclick="play('f')">f</button>
+    <script>
+        function play(key) {
+            fetch('http://192.168.0.10:8000/?key=' + key + '&length=1&volume=0.1');
+        }
+    </script>
+    </body>
+</html>
