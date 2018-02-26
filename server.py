@@ -11,17 +11,7 @@ def getQuerystringValue(qs, key, defaultValue):
         return qs[key][0] if qs.has_key(key) else defaultValue
                 
 class Server(SimpleHTTPServer.SimpleHTTPRequestHandler):
-        # Duplicate from source
-        # https://github.com/python/cpython/blob/13ad3b7a82bf56d803fbe48ee5df6c4b08986c78/Lib/http/server.py
-        def serveIndex(self):
-                f = self.send_head()
-                if f:
-                    try:
-                        self.copyfile(f, self.wfile)
-                    finally:
-                        f.close()
-
-        def triggerSound(self):
+        def do_GET(self):
                 qs = parse_qs(urlparse(self.path).query)
                 volume = float(getQuerystringValue(qs, "volume", 1.0))          # range [0.0, 1.0]
                 duration = float(getQuerystringValue(qs, "length", 1.0))        # in seconds, may be float
@@ -39,9 +29,6 @@ class Server(SimpleHTTPServer.SimpleHTTPRequestHandler):
                 self.end_headers()
                 self.wfile.write(bytes("Played"))
 
-        def do_GET(self):
-                self.serveIndex() if self.path.find('?') == -1 else self.triggerSound()
-
 
 def serve_forever(port):
     try:
@@ -51,5 +38,5 @@ def serve_forever(port):
 
 if __name__ == "__main__":
     SocketServer.TCPServer.allow_reuse_address = True
-    serve_forever(8000)
+    serve_forever(8080)
 
