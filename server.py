@@ -4,6 +4,7 @@ import SocketServer
 import sounddevice as sd
 import numpy as np
 from urlparse import urlparse, parse_qs
+import socket
             
 keys = {'a':439.0, 'b':389.0, 'c': 339.0, 'd': 289.0, 'e': 239.0, 'f': 189.0}
                 
@@ -32,9 +33,17 @@ class Server(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
 def serve_forever(port):
     try:
+        print("Send requests to http://" + id_address() + ":" + str(port))
         SocketServer.TCPServer(('', port), Server).serve_forever()
     except KeyboardInterrupt:
         print("exit")
+
+def id_address():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(("8.8.8.8", 80))
+    ip = s.getsockname()[0]
+    s.close()
+    return ip
 
 if __name__ == "__main__":
     SocketServer.TCPServer.allow_reuse_address = True
