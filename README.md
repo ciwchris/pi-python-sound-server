@@ -7,7 +7,12 @@ Installation
 ------------
 
 - Runs under Python 2.7
-- Requires packages numpy and sounddesign
+- `pip install cffi`
+- `apt-get install` (required by sounddesign)
+    - libportaudio2 (PortAudio)
+- `pip install`
+    - numpy
+    - sounddesign (requires 
 
 
 Run
