@@ -8,12 +8,16 @@ Installation
 
 - Runs under Python 2.7
 - `pip install cffi`
-- `apt-get install` (required by sounddesign)
+- `apt-get install` (required by sounddevice)
     - libportaudio2 (PortAudio)
 - `pip install`
     - numpy
-    - sounddesign (requires 
+    - sounddevice (requires cffi which requires some dev packages)
 
+### Optional ###
+
+To load a sound file and play it with sounddesign
+- `pip install soundfile`
 
 Run
 ---

@@ -9,6 +9,7 @@ name = "pypi"
 
 numpy = "*"
 sounddevice = "*"
+soundfile = "*"
 
 
 [dev-packages]
