@@ -16,7 +16,7 @@ class Server(SimpleHTTPServer.SimpleHTTPRequestHandler):
                 qs = parse_qs(urlparse(self.path).query)
                 volume = float(getQuerystringValue(qs, "volume", 1.0))          # range [0.0, 1.0]
                 duration = float(getQuerystringValue(qs, "length", 1.0))        # in seconds, may be float
-                f = keys[getQuerystringValue(qs, "key", 'a')]                   # sine frequency, Hz, may be float
+                f = keys[getQuerystringValue(qs, "key", 'a')]                   # sin frequency, Hz, may be float
                 fs = 44100                                                      # sampling rate, Hz, must be integer
 
                 sample = (np.sin(2*np.pi*np.arange(fs*duration)*f/fs)).astype(np.float32)
@@ -28,7 +28,7 @@ class Server(SimpleHTTPServer.SimpleHTTPRequestHandler):
                 self.send_header('Cache-Control', 'no-cache')
                 self.send_header('Access-Control-Allow-Origin', '*')
                 self.end_headers()
-                self.wfile.write(bytes("Played"))
+                self.wfile.write("Played")
 
 
 def serve_forever(port):
