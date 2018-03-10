@@ -1,14 +1,15 @@
 Play sound
 ----------
 
-In a text editor enter the following Python script and save the file as `simple-sound.py`:
+In a text editor enter the following Python script and save the file as
+`simple-sound.py`:
 
 ```
 import sounddevice as sd
 import soundfile as sf
 import time
 
-data, samplerate = sf.read('./E_major_piano.ogg.ogx')
+data, samplerate = sf.read('./E_major_piano.ogg')
 sd.play(data, samplerate)
 
 time.sleep(8)
@@ -34,7 +35,7 @@ In a terminal run a simple developer web server:
 python -m SimpleHTTPServer
 ```
 
-Navigate to [http://localhost:8000](http://localhost:8000)
+In a browser navigate to [http://localhost:8000](http://localhost:8000)
 
 To stop the server type: `Ctrl+c`
 
@@ -67,7 +68,7 @@ if __name__ == "__main__":
 In a terminal start the web server by running the script: `python server.py`
 
 
-Navigate to [http://localhost:8080](http://localhost:8080)
+In a browser navigate to [http://localhost:8080](http://localhost:8080)
 
 The text we told the script to write out will be displayed: "Hello from PI"
 
@@ -114,7 +115,7 @@ if __name__ == "__main__":
 
 In a terminal start the web server by running the script: `python server.py`
 
-To play the sound navigate to [http://localhost:8080](http://localhost:8080)
+To play the sound in a browser navigate to [http://localhost:8080](http://localhost:8080)
 
 To stop the server type: `Ctrl+c`
 
@@ -146,7 +147,7 @@ python -m SimpleHTTPServer
 
 In another terminal start the web server to play sounds by running the script: `python server.py`
 
-Navigate to [http://localhost:8000](http://localhost:8000)
+In a browser navigate to [http://localhost:8000](http://localhost:8000)
 
 Click the button to play the sound
 
@@ -174,3 +175,47 @@ Navigate to [http://localhost:8000](http://localhost:8000)
 Click the buttons to play the sounds
 
 To stop the servers in each terminal type: `Ctrl+c`
+
+Access web server remotely
+--------------------------
+
+Determine the IP address of the Raspberry Pi. In a terminal type: `ifconfig`
+
+In the output find the text `inet`. After the text is the IP address. For example:
+
+```
+inet 192.168.0.6  netmask 255.255.255.0  broadcast 192.168.0.25
+```
+
+In this example the IP address is 192.168.0.6
+
+In a text editor update `index.html`. Change this line near the bottom of the file:
+
+```
+fetch('http://localhost:8080/?key=' + key +
+```
+
+Replace localhost with the IP address of the Raspberry Pi. For the example IP address above:
+
+```
+fetch('http://192.168.0.6:8080/?key=' + key +
+```
+
+In a terminal run a simple developer web server for the index.html page:
+
+```
+python -m SimpleHTTPServer
+```
+
+The Raspberry Pi can now be accessed by any device on the same network as the Raspberry Pi. Open a
+browser on a device and, for the example above, go to:
+
+```
+http://192.168.0.6:8000
+```
+
+Appendix
+--------
+
+1. OS install: apt-get install gcc python-dev libc-dev libffi-dev libportaudio2 libsndfile1
+2. Python install: pip install cffi numpy sounddevice soundfile

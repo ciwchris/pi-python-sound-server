@@ -8,40 +8,37 @@
               max-width: 800px;
               margin: 0 auto;
             }
-            /* https://bryanlrobinson.com/blog/2017/07/26/howto-css-grid-layout-to-make-a-simple-fluid-card-grid/ */
-            .card-container {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, 220px);
-                grid-auto-rows: 220px;
-                grid-gap: 1rem;
-                padding: 1rem;
-                justify-content: center;
+            .flex-grid {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
             }
+            .col {
+                flex: 3;
+                max-width: 250px;
+                min-width: 220px;
+                min-height: 220px;
+                padding: 5px;
+            }
+            /* https://bryanlrobinson.com/blog/2017/07/26/howto-css-grid-layout-to-make-a-simple-fluid-card-grid/ */
             @media screen and (max-width: 550px) {
-                    .card-container {
-                        grid-template-columns: repeat(auto-fit, 130px);
-                        grid-gap: 0.3rem;
-                        padding: 0.3rem;
+                    .col {
+                        min-width: 130px;
+                        min-height: 130px;
+                        padding: 3px;
                     }
                     .control-container {
-                        grid-template-columns: 1fr;
-                        grid-gap: 0.3rem;
                         padding: 0.3rem;
                     }
                     label > span { display:block;}
             }
             @media screen and (max-width: 350px) {
-                    .card-container {
-                        grid-template-columns: repeat(auto-fit, 100px);
-                        grid-auto-rows: 100px;
-                    }
                     .control-container {
-                        grid-template-columns: 1fr;
                     }
                     label > span { display:block;}
             }
             .control-container {
-                grid-auto-rows: 60px;
+                padding: 20px 0;
                 align-items: center;
                 text-align: center;
                 font-size: .8rem;
@@ -115,23 +112,23 @@
                 <input id="length" type="range" min="0.1" max="5" step=".1" value="1" />
             </label>
         </div>
-        <div class="card-container">
-            <div class="card">
+        <div class="flex-grid">
+            <div class="col">
                 <button class="red" onclick="play('a')"></button>
             </div>
-            <div class="card">
+            <div class="col">
                 <button class="orange" onclick="play('b')"></button>
             </div>
-            <div class="card">
+            <div class="col">
                 <button class="yellow" onclick="play('c')"></button>
             </div>
-            <div class="card">
+            <div class="col">
                 <button class="green" onclick="play('d')"></button>
             </div>
-            <div class="card">
+            <div class="col">
                 <button class="blue" onclick="play('e')"></button>
             </div>
-            <div class="card">
+            <div class="col">
                 <button class="purple" onclick="play('f')"></button>
             </div>
         </div>

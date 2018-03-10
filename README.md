@@ -7,12 +7,17 @@ Installation
 ------------
 
 - Runs under Python 2.7
-- `pip install cffi`
-- `apt-get install` (required by sounddevice)
-    - libportaudio2 (PortAudio)
+- `apt-get install`
+    - gcc
+    - python-dev
+    - libc-dev
+    - libffi-dev
+    - libportaudio2
+    - libsndfile1
 - `pip install`
+    - cffi
     - numpy
-    - sounddevice (requires cffi which requires some dev packages)
+    - sounddevice
 
 ### Optional ###
 
